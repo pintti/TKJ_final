@@ -1,0 +1,10 @@
+
+**** Build of configuration Debug for project JTKJ_labra ****
+
+"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+making ../src/sysbios/rom_sysbios.aem3 ...
+gmake[1]: Entering directory 'C:/ti/JTKJ_labra_2020/src/sysbios'
+gmake[1]: Nothing to be done for 'all'.
+gmake[1]: Leaving directory 'C:/ti/JTKJ_labra_2020/src/sysbios'
+
+**** Build Finished ****
