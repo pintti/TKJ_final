@@ -1,0 +1,55 @@
+
+**** Build of configuration Debug for project JTKJ_labra ****
+
+"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+making ../src/sysbios/rom_sysbios.aem3 ...
+gmake[1]: Entering directory 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/src/sysbios'
+gmake[1]: Nothing to be done for 'all'.
+gmake[1]: Leaving directory 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/src/sysbios'
+'Building file: ../main.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 --float_support=vfplib -me --include_path="C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202" --include_path="C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202" --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" -g --define=ccs --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi --preproc_with_compile --preproc_dependency="main.d" --cmd_file="configPkg/compiler.opt" "../main.c"
+"../main.c", line 42: warning #179-D: variable "i2c" was declared but never referenced
+"../main.c", line 43: warning #179-D: variable "i2cParams" was declared but never referenced
+"../main.c", line 44: warning #179-D: variable "displayHandle" was declared but never referenced
+"../main.c", line 45: warning #179-D: variable "uartHandle" was declared but never referenced
+'Finished building: ../main.c'
+' '
+'Building file: ../wireless/comm_lib.c'
+'Invoking: ARM Compiler'
+"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 --float_support=vfplib -me --include_path="C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202" --include_path="C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202" --include_path="C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" -g --define=ccs --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi --preproc_with_compile --preproc_dependency="wireless/comm_lib.d" --obj_directory="wireless" --cmd_file="configPkg/compiler.opt" "../wireless/comm_lib.c"
+"../wireless/comm_lib.c", line 137: warning #169-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+"../wireless/comm_lib.c", line 146: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "int8_t"
+"../wireless/comm_lib.c", line 154: warning #515-D: a value of type "void *" cannot be assigned to an entity of type "int32_t"
+"../wireless/comm_lib.c", line 157: warning #169-D: argument of type "volatile uint8_t *" is incompatible with parameter of type "uint8_t *"
+"../wireless/comm_lib.c", line 191: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "rfc_dataEntryGeneral_t *"
+"../wireless/comm_lib.c", line 192: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "rfc_dataEntryGeneral_t *"
+"../wireless/comm_lib.c", line 193: warning #169-D: argument of type "rfc_dataEntryGeneral_t *" is incompatible with parameter of type "uint8_t *"
+"../wireless/comm_lib.c", line 195: warning #515-D: a value of type "rfc_dataEntryGeneral_t *" cannot be assigned to an entity of type "volatile uint8_t *"
+"../wireless/comm_lib.c", line 206: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "rfc_dataEntryGeneral_t *"
+"../wireless/comm_lib.c", line 207: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "rfc_dataEntryGeneral_t *"
+"../wireless/comm_lib.c", line 208: warning #169-D: argument of type "rfc_dataEntryGeneral_t *" is incompatible with parameter of type "uint8_t *"
+"../wireless/comm_lib.c", line 210: warning #515-D: a value of type "rfc_dataEntryGeneral_t *" cannot be assigned to an entity of type "volatile uint8_t *"
+"../wireless/comm_lib.c", line 242: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "CWC_CC2650_IEEE154_simple_packet_struct_t *"
+"../wireless/comm_lib.c", line 244: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "uint16_t *"
+"../wireless/comm_lib.c", line 271: warning #515-D: a value of type "uint8_t *" cannot be assigned to an entity of type "rfc_dataEntryGeneral_t *"
+'Finished building: ../wireless/comm_lib.c'
+' '
+'Building target: JTKJ_labra.out'
+'Invoking: ARM Linker'
+"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/bin/armcl" -mv7M3 --code_state=16 --float_support=vfplib -me -g --define=ccs --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on --abi=eabi -z -m"JTKJ_labra.map" --stack_size=256 --heap_size=0 -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/lib" -i"C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include" --reread_libs --warn_sections --diag_wrap=off --display_error_number --xml_link_info="JTKJ_labra_linkInfo.xml" --rom_model -o "JTKJ_labra.out" "./CC2650STK.obj" "./ccfg.obj" "./main.obj" "./sensors/bmp280.obj" "./sensors/hdc1000.obj" "./sensors/mpu9250.obj" "./sensors/opt3001.obj" "./sensors/tmp007.obj" "./wireless/CWC_CC2650_154Drv.obj" "./wireless/CWC_IntegrTest.obj" "./wireless/ERRORS.obj" "./wireless/comm_lib.obj" "../CC2650STK.cmd" -l"configPkg/linker.cmd" -l"C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/bin/ccs/driverlib.lib" -llibc.a 
+<Linking>
+'Finished building target: JTKJ_labra.out'
+' '
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project JTKJ_labra ****
+
+"C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
+making ../src/sysbios/rom_sysbios.aem3 ...
+gmake[1]: Entering directory 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/src/sysbios'
+gmake[1]: Nothing to be done for 'all'.
+gmake[1]: Leaving directory 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/src/sysbios'
+
+**** Build Finished ****
