@@ -3,8 +3,8 @@
 
 "C:\\ti\\ccsv6\\utils\\bin\\gmake" -k all 
 making ../src/sysbios/rom_sysbios.aem3 ...
-gmake[1]: Entering directory 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/src/sysbios'
+gmake[1]: Entering directory 'C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/src/sysbios'
 gmake[1]: Nothing to be done for 'all'.
-gmake[1]: Leaving directory 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/src/sysbios'
+gmake[1]: Leaving directory 'C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/src/sysbios'
 
 **** Build Finished ****

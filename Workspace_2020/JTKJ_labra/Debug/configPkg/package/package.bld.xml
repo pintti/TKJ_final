@@ -7,7 +7,7 @@
         <srcFile name="package/cfg/labra_pem3.c"/>
     </sources>
     <configscripts>
-        <srcFile name="C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/labra.cfg"/>
+        <srcFile name="C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/labra.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
@@ -44,7 +44,7 @@
         isPartial="false"
         xCfgScript="package/cfg/labra_pem3.cfg"
         xCfgPrefix="package/cfg/labra_pem3"
-        cfgScript="C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/labra.cfg"
+        cfgScript="C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/labra.cfg"
         cfgArgs="null"
         />
     </configurations>
@@ -56,7 +56,7 @@
         profile="release"
         xCfgScript="package/cfg/labra_pem3.cfg"
         xCfgPrefix="package/cfg/labra_pem3"
-        cfgScript="C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/labra.cfg"
+        cfgScript="C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/labra.cfg"
         cfgArgs="null"
         />
     </executables>

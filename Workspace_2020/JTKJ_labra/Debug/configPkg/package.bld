@@ -11,7 +11,7 @@ var makeAssembly = false;
 var Executable = xdc.module('xdc.bld.Executable');
 
 var exeOpts = new Executable.Attrs({
-        cfgScript: 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/labra.cfg',
+        cfgScript: 'C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/labra.cfg',
         profile: 'release',
         cfgHome: 'configPkg',
 });
@@ -41,7 +41,7 @@ else {
 
 var thisObj = {
     cfg:        '../labra.cfg',
-    outputPath: 'C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/Debug/configPkg',
+    outputPath: 'C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/Debug/configPkg',
     exeName:    'labra' + suffix,
     exeIntName: 'labra' + suffix.replace('.', '_'),
     targ:       targ,

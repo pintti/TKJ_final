@@ -213,11 +213,11 @@ main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h
 main.obj: ../Board.h
 main.obj: ../CC2650STK.h
 main.obj: ../wireless/comm_lib.h
-main.obj: C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/wireless/CWC_CC2650_154Drv.h
+main.obj: C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/wireless/CWC_CC2650_154Drv.h
 main.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/rf_data_entry.h
 main.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/rf_mailbox.h
 main.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/string.h
-main.obj: C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/wireless/address.h
+main.obj: C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/wireless/address.h
 main.obj: ../sensors/opt3001.h
 
 ../main.c: 
@@ -433,9 +433,9 @@ C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h:
 ../Board.h: 
 ../CC2650STK.h: 
 ../wireless/comm_lib.h: 
-C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/wireless/CWC_CC2650_154Drv.h: 
+C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/wireless/CWC_CC2650_154Drv.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/rf_data_entry.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/rf_mailbox.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/string.h: 
-C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/wireless/address.h: 
+C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/wireless/address.h: 
 ../sensors/opt3001.h: 

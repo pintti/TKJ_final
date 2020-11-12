@@ -152,11 +152,11 @@ sensors/mpu9250.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/s
 sensors/mpu9250.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/bios_6_46_00_23/packages/ti/sysbios/knl/Clock.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/bios_6_46_00_23/packages/ti/sysbios/knl/package/Clock_TimerProxy.h
-sensors/mpu9250.obj: C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/Board.h
+sensors/mpu9250.obj: C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/Board.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/tidrivers_cc13xx_cc26xx_2_20_00_08/packages/ti/drivers/Power.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/tidrivers_cc13xx_cc26xx_2_20_00_08/packages/ti/drivers/utils/List.h
 sensors/mpu9250.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h
-sensors/mpu9250.obj: C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/CC2650STK.h
+sensors/mpu9250.obj: C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/CC2650STK.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/tidrivers_cc13xx_cc26xx_2_20_00_08/packages/ti/drivers/PIN.h
 sensors/mpu9250.obj: C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/ioc.h
@@ -173,7 +173,7 @@ sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/rom.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/gpio.h
 sensors/mpu9250.obj: C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/inc/hw_gpio.h
-sensors/mpu9250.obj: C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/sensors/mpu9250.h
+sensors/mpu9250.obj: C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/sensors/mpu9250.h
 
 ../sensors/mpu9250.c: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/inttypes.h: 
@@ -327,11 +327,11 @@ C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stdbool.h:
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/bios_6_46_00_23/packages/ti/sysbios/knl/Clock.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/bios_6_46_00_23/packages/ti/sysbios/knl/package/Clock_TimerProxy.h: 
-C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/Board.h: 
+C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/Board.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/tidrivers_cc13xx_cc26xx_2_20_00_08/packages/ti/drivers/Power.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/tidrivers_cc13xx_cc26xx_2_20_00_08/packages/ti/drivers/utils/List.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h: 
-C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/CC2650STK.h: 
+C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/CC2650STK.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/tidrivers_cc13xx_cc26xx_2_20_00_08/packages/ti/drivers/PIN.h: 
 C:/ti/ccsv6/tools/compiler/ti-cgt-arm_15.12.1.LTS/include/stddef.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/ioc.h: 
@@ -348,4 +348,4 @@ C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/inc/hw_c
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/rom.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/driverlib/gpio.h: 
 C:/ti/tirtos_cc13xx_cc26xx_2_20_00_06/products/cc26xxware_2_24_02_17202/inc/hw_gpio.h: 
-C:/Users/allut/Documents/Koodaus/TKJ_final/JTKJ_labra_202/sensors/mpu9250.h: 
+C:/Users/Samppa/Documents/TKJ_final/Workspace_2020/JTKJ_labra/sensors/mpu9250.h: 
