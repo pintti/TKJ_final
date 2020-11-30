@@ -9,4 +9,8 @@
 		<item value="true" key="WizardProjectsImportPage.STORE_IMPORT_REFERENCED_PROJECTS_ID"/>
 		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 	</section>
+	<section name="com.ti.ccstudio.project.ui.internal.wizards.project.ProjectSettingsPage">
+		<section name="1">
+		</section>
+	</section>
 </section>
