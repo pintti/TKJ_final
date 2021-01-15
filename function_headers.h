@@ -34,7 +34,11 @@ void nuoli_ylos();
 void nuoli_alas();
 void nuoli_vasen();
 void nuoli_oikea();
-void havio();
-void voitto();
+void tapahtumaTask();
+void sound_effect();
+void sound_effect_event();
+void ledTaskFnkt(UArg arg0, UArg arg1);
+void buttonFxn(PIN_Handle handle, PIN_Id pinId);
+void menuTask(UArg arg0, UArg arg1);
 
 #endif

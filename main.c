@@ -20,6 +20,9 @@ Char sfxStack[1024];
 Char GameStack[1024];
 Char commTaskStack[2048];
 Char displayStack[2048];
+Char tapahtumaStack[1024];
+Char menuTaskStack[1024];
+Char ledTaskStack[512];
 
 static PIN_Handle buzzerPin;
 static PIN_State buzzerPinState;
@@ -35,9 +38,12 @@ static PIN_Config MpuPinConfig[] = {
 };
 
 static PIN_Handle buttonHandle1;
-static PIN_State buttonState2;
+static PIN_State buttonState1;
 
 static PIN_Handle ledHandle1;
+static PIN_State ledState1;
+
+static PIN_Handle ledHandle2;
 static PIN_State ledState2;
 
 static const I2CCC26XX_I2CPinCfg i2cMPUCfg = {
@@ -59,14 +65,16 @@ PIN_Config ledConfig2[] = {
 };
 
 // Values
-enum state {MENU=1, GAME, MSG, READ};
+enum state {MENU=1, GAME, MSG, READ, WIN, LOSE};
 enum state gameState = MENU;
 enum move {UP=1, DOWN, LEFT, RIGHT};
 enum move gameMove = UP;
 int movesSpent = 0;
 float ax=0, ay=0, az=-1.0, gx=0, gy=0, gz=0;
+int firstMenu = 1;
+int steps = 0;
 
-
+//sensor read function
 Void readTask(UArg arg0, UArg arg1){
 	I2C_Handle i2cMPU;
 	I2C_Params i2cMPUParams;
@@ -95,37 +103,34 @@ Void readTask(UArg arg0, UArg arg1){
 			if(ax > axy_stable_up | ax < axy_stable_lo | ay > axy_stable_up | ay < axy_stable_lo){
 				gameState = GAME;
 			}
-			else{
+			/*else{
 				gameState = MENU;
-			}
+			}*/
 		}
-		Task_sleep(30000 / Clock_tickPeriod);
+		Task_sleep(500000 / Clock_tickPeriod);
 	}
 }
 
+//gameloop
 Void game_Task(UArg arg0, UArg arg1){
 	while(1){
-		if(gameState == MENU){
-			gameState = READ;
-		}
 		if (gameState == GAME){
-
 			//Movement commands
 			gameState = READ;
 			if (ax > axy_up | ax < axy_lo){
-				moveX(ax);
 				sound_effect();
+				moveX(ax);
 			}
 			else if (ay > axy_up | ay < axy_lo){
-				moveY(ay);
 				sound_effect();
+				moveY(ay);
 			}
 		}
-		Task_sleep(100000/Clock_tickPeriod);
+		Task_sleep(500000/Clock_tickPeriod);
 	}
 }
 
-
+//communicates with parent
 void sendMessage(){
 	char payload[16];
 	System_printf("MSG\n");
@@ -150,6 +155,7 @@ void sendMessage(){
 
 //Movement functions
 void moveX(float x){
+	steps++;
 	System_printf("UP DOWN\n");
 	System_flush();
 	if (x < axy_lo){
@@ -164,6 +170,7 @@ void moveX(float x){
 }
 
 void moveY(float y){
+	steps++;
 	System_printf("LEFT RIGHT\n");
 	System_flush();
 	if (y < axy_lo){
@@ -177,37 +184,73 @@ void moveY(float y){
 	sendMessage();
 }
 
+
 //Buzzer functions
 Void sound_effectTask(UArg arg0, UArg arg1){
 	buzzerPin = PIN_open(&buzzerPinState, buzzerConfig);
 	if (buzzerPin == NULL){
     	System_abort("Buzzer pin open failed!");
 	}
-	while(gameState == MENU){
-	int i;
-	for(i=0; i<5; i++){
-		buzzerOpen(buzzerPin);
-		buzzerSetFrequency(130);
-		Task_sleep(100000/Clock_tickPeriod);
-		buzzerSetFrequency(330);
-		buzzerClose();
-		Task_sleep(50000/Clock_tickPeriod);
-		buzzerOpen(buzzerPin);
-		Task_sleep(75000/Clock_tickPeriod);
-		buzzerClose();
-		Task_sleep(50000/Clock_tickPeriod);
+	while(1){
+		while(gameState == MENU && firstMenu == 1){
+		int i;
+		for(i=0; i<3; i++){
+			buzzerOpen(buzzerPin);
+			buzzerSetFrequency(130);
+			Task_sleep(150000/Clock_tickPeriod);
+			buzzerSetFrequency(330);
+			buzzerClose();
+			Task_sleep(100000/Clock_tickPeriod);
+			buzzerOpen(buzzerPin);
+			Task_sleep(75000/Clock_tickPeriod);
+			buzzerClose();
+			Task_sleep(100000/Clock_tickPeriod);
 
-		buzzerOpen(buzzerPin);
-		buzzerSetFrequency(780);
-		Task_sleep(50000/Clock_tickPeriod);
-		buzzerSetFrequency(880);
-		Task_sleep(50000/Clock_tickPeriod);
-		buzzerSetFrequency(780);
-		Task_sleep(50000/Clock_tickPeriod);
+			buzzerOpen(buzzerPin);
+			buzzerSetFrequency(780);
+			Task_sleep(100000/Clock_tickPeriod);
+			buzzerSetFrequency(880);
+			Task_sleep(100000/Clock_tickPeriod);
+			buzzerSetFrequency(780);
+			Task_sleep(100000/Clock_tickPeriod);
 
-		buzzerClose();
+			buzzerClose();
+			}
+		}
+		while (gameState == WIN){
+			buzzerOpen(buzzerPin);
+			buzzerSetFrequency(523);
+			Task_sleep(75000/Clock_tickPeriod);
+			buzzerSetFrequency(587);
+			Task_sleep(75000/Clock_tickPeriod);
+			buzzerSetFrequency(523);
+			Task_sleep(75000/Clock_tickPeriod);
+			buzzerSetFrequency(587);
+			Task_sleep(75000/Clock_tickPeriod);
+			buzzerSetFrequency(659);
+			Task_sleep(150000/Clock_tickPeriod);
+			buzzerClose();
+			Task_sleep(300000/Clock_tickPeriod);
+			}
+		while (gameState == LOSE){
+			buzzerOpen(buzzerPin);
+			buzzerSetFrequency(659);
+			Task_sleep(250000/Clock_tickPeriod);
+			buzzerClose();
+			Task_sleep(100000/Clock_tickPeriod);
+			buzzerOpen(buzzerPin);
+			buzzerSetFrequency(587);
+			Task_sleep(150000/Clock_tickPeriod);
+			buzzerClose();
+			Task_sleep(100000/Clock_tickPeriod);
+			buzzerOpen(buzzerPin);
+			buzzerSetFrequency(523);
+			Task_sleep(250000/Clock_tickPeriod);
+			buzzerClose();
+			Task_sleep(500000/Clock_tickPeriod);
+			}
+		Task_sleep(500000/Clock_tickPeriod);
 	}
-}
 }
 
 
@@ -220,10 +263,6 @@ void sound_effect(){
 }
 
 
-
-
-/* Communication Task */
-
 Void commTaskFxn(UArg arg0, UArg arg1) {
 	char payload[16];
 	int32_t result = StartReceive6LoWPAN();
@@ -232,26 +271,152 @@ Void commTaskFxn(UArg arg0, UArg arg1) {
 	}
 	System_printf("comms on");
 	System_flush();
+	uint16_t senderAddr;
 
     while (1) {
     	if (GetRXFlag() == true) {
     		memset(payload, 0, 16);
-    		Receive6LoWPAN(IEEE80154_MY_ADDR, payload, strlen(payload));
-    		System_printf(payload);
-    		System_flush();
+    		Receive6LoWPAN(&senderAddr, payload, strlen(payload));
+    		if (strlen(payload) == 7){
+    			gameState = WIN;
+    		}
+    		else if (strlen(payload) < 10 ){
+    			gameState = LOSE;
+    		}
+    		else{
+    			gameState = READ;
+    		}
         }
     }
 }
 
+//LCD function
+Void tapahtumaTask(UArg arg0, UArg arg1){
+	Display_Params disParams;
+	Display_Params_init(&disParams);
+	disParams.lineClearMode = DISPLAY_CLEAR_BOTH;
+
+	Display_Handle disHandle = Display_open(Display_Type_LCD, &disParams);
+	tContext *pContext = DisplayExt_getGrlibContext(disHandle);
+
+	int i = 3;
+	int k = 3;
+	int i_true = 1;
+	int k_true = 1;
+	char str[12];
+
+	while(1){
+		if (gameState == WIN){
+			Display_print0(disHandle, 5, 4, "YOU WIN");
+			GrCircleDraw(pContext, 46, 44, 30);
+			GrFlush(pContext);
+			Task_sleep(500000/Clock_tickPeriod);
+			Display_clear(disHandle);
+			Display_print0(disHandle, 3, 3, "PRESS THE");
+			Display_print0(disHandle, 4, 4, "BUTTON");
+			Display_print0(disHandle, 5, 2, "TO CONTINUE");
+			Task_sleep(500000/Clock_tickPeriod);
+			Display_clear(disHandle);
+		}
+		else if (gameState == LOSE){
+			Display_print0(disHandle, 6, 4, "YOU LOSE");
+			GrLineDraw(pContext, 24, 24, 72, 72);
+			GrLineDraw(pContext, 24, 72, 72, 24);
+			GrFlush(pContext);
+			Task_sleep(500000/Clock_tickPeriod);
+			Display_clear(disHandle);
+			Display_print0(disHandle, 3, 3, "PRESS THE");
+			Display_print0(disHandle, 4, 4, "BUTTON");
+			Display_print0(disHandle, 5, 2, "TO CONTINUE");
+			Task_sleep(500000/Clock_tickPeriod);
+			Display_clear(disHandle);
+		}
+		else if (gameState == MENU){
+			Display_print0(disHandle, 3, 3, "TRON GAME");
+			Display_print0(disHandle, 5, 2, "THE BUTTON");
+			if(firstMenu){
+				Display_print0(disHandle, 4, 1, "TO START PRESS");
+			}
+			else{
+				Display_print0(disHandle, 4, 1, "TO CONT PRESS");
+				sprintf(str, "LIIKKEET: %02d", steps);
+				Display_print0(disHandle, 11, 3, str);
+			}
+			Task_sleep(500000/Clock_tickPeriod);
+			Display_clear(disHandle);
+		}
+		else{
+			GrCircleFill(pContext, i, k, 6);
+			GrFlush(pContext);
+			if (i_true){
+				i = i + 5;
+			}
+			else{
+				i = i - 5;
+			}
+			if (k_true){
+				k = k + 7;
+			}
+			else{
+				k = k - 7;
+			}
+			if(i >= 86){
+				i_true = 0;
+			}
+			else if(i <= 5){
+				i_true = 1;
+			}
+			if(k >= 86){
+				k_true = 0;
+			}
+			else if(k <= 8){
+				k_true = 1;
+			}
+			Task_sleep(250000/Clock_tickPeriod);
+			Display_clear(disHandle);
+		}
+	}
+}
+
+//led function
+Void ledTaskFnkt(UArg arg0, UArg arg1){
+	while(1){
+		if (gameState == WIN || gameState == LOSE){
+			PIN_setOutputValue(ledHandle1, Board_LED1, !PIN_getOutputValue(Board_LED1));
+			Task_sleep(250000/Clock_tickPeriod);
+			PIN_setOutputValue(ledHandle1, Board_LED1, !PIN_getOutputValue(Board_LED1));
+			PIN_setOutputValue(ledHandle2, Board_LED0, !PIN_getOutputValue(Board_LED0));
+			Task_sleep(250000/Clock_tickPeriod);
+			PIN_setOutputValue(ledHandle2, Board_LED0, !PIN_getOutputValue(Board_LED0));
+		}
+		else{
+			Task_sleep(500000/Clock_tickPeriod);
+		}
+	}
+}
+
+//button function
+void buttonFxn(PIN_Handle handle, PIN_Id pinId){
+	System_printf("PRESS\n");
+	System_flush();
+	if(gameState == WIN || gameState == LOSE){
+		gameState = MENU;
+	}
+	else if (gameState == MENU){
+		gameState = READ;
+		firstMenu = 0;
+	}
+	else if (gameState == READ || gameState == GAME){
+		gameState = MENU;
+	}
+}
+
 
 Int main(void) {
-
-	// Initialize board
 	Board_initGeneral();
     Board_initI2C();
     Board_initUART();
 
-    // Task variables
 	Task_Handle mpuTask;
 	Task_Params mpuTaskParams;
 
@@ -259,55 +424,69 @@ Int main(void) {
 	Task_Params gameTaskParams;
 
     hMpuPin = PIN_open(&MpuPinState, MpuPinConfig);
-    if (hMpuPin == NULL){
-    	System_abort("Pin open failed!");
+
+    ledHandle1 = PIN_open(&ledState1, ledConfig1);
+    ledHandle2 = PIN_open(&ledState2, ledConfig2);
+
+    buttonHandle1 = PIN_open(&ledState1, buttonConfig1);
+    if(!buttonHandle1){
+    	System_abort("Error initializing button");
+    }
+    if (PIN_registerIntCb(buttonHandle1, &buttonFxn) != 0){
+    	System_abort("Error registering function");
     }
 
 	Task_Handle sfxTask;
 	Task_Params sfxTaskParams;
-
 	Task_Params_init(&sfxTaskParams);
-    sfxTaskParams.stackSize = STACKSIZE;
+    sfxTaskParams.stackSize = STACKSIZE/2;
     sfxTaskParams.stack = &sfxStack;
 	sfxTaskParams.priority=2;
-
     sfxTask = Task_create(sound_effectTask, &sfxTaskParams, NULL);
-    if (sfxTask == NULL) {
-      	System_abort("SFX task create failed!");
-    }
 
     Task_Params_init(&mpuTaskParams);
-    mpuTaskParams.stackSize = STACKSIZE;
+    mpuTaskParams.stackSize = STACKSIZE/2;
     mpuTaskParams.stack = &MpuStack;
     mpuTaskParams.priority=2;
-
     mpuTask = Task_create(readTask, &mpuTaskParams, NULL);
-    if (mpuTask == NULL) {
-    	System_abort("MPU task create failed!");
-    }
 
     Task_Params_init(&gameTaskParams);
-    gameTaskParams.stackSize = STACKSIZE;
+    gameTaskParams.stackSize = STACKSIZE/2;
     gameTaskParams.stack = &GameStack;
     gameTaskParams.priority = 2;
-
     gameTask = Task_create(game_Task, &gameTaskParams, NULL);
-    if (gameTask == NULL){
-    	System_abort("Game task create failed!");
-    }
 
 	Task_Handle commTask;
 	Task_Params commTaskParams;
-
     Task_Params_init(&commTaskParams);
     commTaskParams.stackSize = STACKSIZE;
     commTaskParams.stack = &commTaskStack;
     commTaskParams.priority=1;
-
     commTask = Task_create(commTaskFxn, &commTaskParams, NULL);
-    if (commTask == NULL) {
-    	System_abort("Task create failed!");
-    }
+
+    Task_Handle ledTask;
+    Task_Params ledTaskParams;
+    Task_Params_init(&ledTaskParams);
+    ledTaskParams.stackSize = STACKSIZE/4;
+    ledTaskParams.stack = &ledTaskStack;
+    ledTaskParams.priority=2;
+    ledTask = Task_create(ledTaskFnkt, &ledTaskParams, NULL);
+
+    Task_Params eventTaskParams;
+    Task_Handle eventTaskHandle;
+    Task_Params_init(&eventTaskParams);
+    eventTaskParams.stackSize = STACKSIZE/2;
+    eventTaskParams.stack = &tapahtumaStack;
+    eventTaskParams.priority = 2;
+    eventTaskHandle = Task_create(tapahtumaTask, &eventTaskParams, NULL);
+
+    Task_Handle menuTaskHandle;
+    Task_Params menuTaskParams;
+    Task_Params_init(&menuTaskParams);
+    menuTaskParams.stackSize = STACKSIZE/2;
+    menuTaskParams.stack = &menuTaskStack;
+    menuTaskParams.priority = 2;
+    menuTaskHandle = Task_create(menuTask, &menuTaskParams, NULL);
 
     Init6LoWPAN();
 
